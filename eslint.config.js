@@ -9,12 +9,22 @@ module.exports = antfu({
   rules: {
     'semi': ['error', 'always'],
     'curly': ['error', 'all'],
+    'new-cap': 'off',
     'no-console': 'warn',
-    'no-multiple-empty-lines': 'error',
+    'no-multiple-empty-lines': ['error', { max: 1 }],
+    'max-len': ['error', { code: 120 }],
+    'no-unused-private-class-members': 'warn',
+    'no-eq-null': 'error',
+    'no-empty': 'error',
+    'max-classes-per-file': ['error', 1],
+    'no-unneeded-ternary': 'error',
+    'no-undefined': 'warn',
+    'yoda': 'error',
+    'require-await': 'error',
+    'no-async-promise-executor': 'error',
+    'require-atomic-updates': 'error',
     'style/semi': ['error', 'always'],
     'style/brace-style': ['error', '1tbs'],
-    'max-len': ['warn', { code: 80 }],
-    'max-len': ['error', { code: 120 }],
     'style/member-delimiter-style': [
       'error',
       {
@@ -37,9 +47,9 @@ module.exports = antfu({
       },
     ],
     'ts/no-namespace': 'off',
-    'ts/no-redeclare': 'off',
     'ts/consistent-type-imports': 'off',
     'ts/consistent-type-definitions': 'off',
     'test/prefer-lowercase-title': 'off',
   },
+
 });
