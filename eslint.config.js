@@ -13,7 +13,7 @@ module.exports = antfu({
     'no-console': 'warn',
     'no-multiple-empty-lines': ['error', { max: 1 }],
     'max-len': ['error', { code: 120 }],
-    'no-unused-private-class-members': 'warn',
+    'no-unused-private-class-members': 'error',
     'no-eq-null': 'error',
     'no-empty': 'error',
     'max-classes-per-file': ['error', 1],
