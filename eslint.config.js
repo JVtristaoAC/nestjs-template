@@ -20,7 +20,7 @@ module.exports = antfu({
     'no-unneeded-ternary': 'error',
     'no-undefined': 'warn',
     'yoda': 'error',
-    'require-await': 'error',
+    'require-await': 'warn',
     'no-async-promise-executor': 'error',
     'require-atomic-updates': 'error',
     'style/semi': ['error', 'always'],

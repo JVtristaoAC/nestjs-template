@@ -1,10 +1,14 @@
+import { randomUUID } from 'node:crypto';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
 
-@Schema()
+@Schema({ timestamps: true })
 export class User {
+  @Prop({ default: randomUUID() })
+    id: string;
+
   @Prop()
     name: string;
 
@@ -13,6 +17,12 @@ export class User {
 
   @Prop()
     password: string;
+
+  @Prop()
+    createdAt: Date;
+
+  @Prop()
+    updatedAt: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
