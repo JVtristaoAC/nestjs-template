@@ -3,7 +3,7 @@ export interface BaseEntity {
   updated_at: Date;
 
   /**
-   * @returns name of database entity related to this class
+   * @returns the database related entity name
    */
   getEntityName: () => string;
 }

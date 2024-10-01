@@ -11,24 +11,23 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const response = await this.usersRepository.create({ data: createUserDto, select: { id: true } });
-
-    return response.id;
+    const { id } = await this.usersRepository.create(User, { data: createUserDto, select: { id: true } });
+    return id;
   }
 
   async findAll(): Promise<{ name: string, created_at: Date, }[]> {
-    return await this.usersRepository.list({ where: {}, select: { name: true, created_at: true } });
+    return await this.usersRepository.list(User, { where: {}, select: { name: true, created_at: true } });
   }
 
   async findOne(id: number) {
-    return await this.usersRepository.get({ where: { id } });
+    return await this.usersRepository.get(User, { where: { id } });
   }
 
   async update(updateUserDto: UpdateUserDto) {
-    return await this.usersRepository.update({ data: { name: updateUserDto.name }, where: { id: updateUserDto.id } });
+    return await this.usersRepository.update(User, { data: { name: updateUserDto.name }, where: { id: updateUserDto.id } });
   }
 
   async delete(id: number) {
-    return await this.usersRepository.delete({ where: { id } });
+    return await this.usersRepository.delete(User, { where: { id } });
   }
 }

@@ -13,9 +13,9 @@ export type SelectedFields<T, Select> = {
 };
 
 export interface IBaseRepository<T extends BaseEntity> {
-  create: <Selected extends Partial<SelectType<T>>>(args: { data: Partial<T>, select?: Selected, }) => Promise<FilterNever<SelectedFields<T, Selected>>>;
-  update: (args: { where: Partial<T>, data: Partial<T>, }) => Promise<void>;
-  delete: (args: { where: Partial<T>, }) => Promise<void>;
-  list: <Selected extends Partial<SelectType<T>>>({ where, select }: { where: Partial<T>, select?: Selected, }) => Promise<FilterNever<SelectedFields<T, Selected>>[]>;
-  get: <Selected extends Partial<SelectType<T>>>({ where, select }: { where: Partial<T>, select?: Selected, }) => Promise<FilterNever<SelectedFields<T, Selected>>>;
+  create: <Selected extends Partial<SelectType<T>>>(Entity: { new(): T, }, args: { data: Partial<T>, select?: Selected, }) => Promise<FilterNever<SelectedFields<T, Selected>>>;
+  update: (Entity: { new(): T, }, args: { where: Partial<T>, data: Partial<T>, }) => Promise<void>;
+  delete: (Entity: { new(): T, }, args: { where: Partial<T>, }) => Promise<void>;
+  list: <Selected extends Partial<SelectType<T>>>(Entity: { new(): T, }, args: { where: Partial<T>, select?: Selected, }) => Promise<FilterNever<SelectedFields<T, Selected>>[]>;
+  get: <Selected extends Partial<SelectType<T>>>(Entity: { new(): T, }, args: { where: Partial<T>, select?: Selected, }) => Promise<FilterNever<SelectedFields<T, Selected>>>;
 }

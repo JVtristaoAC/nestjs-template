@@ -5,28 +5,31 @@ import { PrismaService } from '../database/prisma.service';
 
 @Injectable()
 export class BaseRepository<T extends BaseEntity> implements IBaseRepository<T> {
-  entity: T;
-  constructor(private readonly context: PrismaService, entity: T) {
-    this.entity = entity;
+  constructor(private readonly context: PrismaService) {
   }
 
-  async create<Selected extends Partial<SelectType<T>>>(args: { data: Partial<T>, select?: Selected, }): Promise<FilterNever<SelectedFields<T, Selected>>> {
-    return await (this.context[this.entity.getEntityName()] as any).create(args);
+  async create<Selected extends Partial<SelectType<T>>>(Entity: { new(): T, }, args: { data: Partial<T>, select?: Selected, }): Promise<FilterNever<SelectedFields<T, Selected>>> {
+    const instance = new Entity();
+    return await (this.context[instance.getEntityName()] as any).create(args);
   }
 
-  async update(args: { where: Partial<T>, data: Partial<T>, }): Promise<void> {
-    return await (this.context[this.entity.getEntityName()] as any).update(args);
+  async update(Entity: { new(): T, }, args: { where: Partial<T>, data: Partial<T>, }): Promise<void> {
+    const instance = new Entity();
+    return await (this.context[instance.getEntityName()] as any).update(args);
   };
 
-  async delete(args: { where: Partial<T>, }): Promise<void> {
-    return await (this.context[this.entity.getEntityName()] as any).delete(args);
+  async delete(Entity: { new(): T, }, args: { where: Partial<T>, }): Promise<void> {
+    const instance = new Entity();
+    return await (this.context[instance.getEntityName()] as any).delete(args);
   };
 
-  async list<Select extends Partial<SelectType<T>>>(args: { where: Partial<T>, select?: Select, }): Promise<FilterNever<SelectedFields<T, Select>>[]> {
-    return await (this.context[this.entity.getEntityName()] as any).findMany(args);
+  async list<Select extends Partial<SelectType<T>>>(Entity: { new(): T, }, args: { where: Partial<T>, select?: Select, }): Promise<FilterNever<SelectedFields<T, Select>>[]> {
+    const instance = new Entity();
+    return await (this.context[instance.getEntityName()] as any).findMany(args);
   };
 
-  async get<Select extends Partial<SelectType<T>>>(args: { where: Partial<T>, select?: Select, }): Promise<FilterNever<SelectedFields<T, Select>>> {
-    return await (this.context[this.entity.getEntityName()] as any).findFirst(args);
+  async get<Select extends Partial<SelectType<T>>>(Entity: { new(): T, }, args: { where: Partial<T>, select?: Select, }): Promise<FilterNever<SelectedFields<T, Select>>> {
+    const instance = new Entity();
+    return await (this.context[instance.getEntityName()] as any).findFirst(args);
   };
 }
