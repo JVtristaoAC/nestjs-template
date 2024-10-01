@@ -1,9 +1,5 @@
 # Nest-Template
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
+This project serves as a template for creating scalable NestJS applications with a generic repository pattern. It provides a flexible, reusable data access layer that simplifies CRUD operations and promotes clean architecture.
 ## Project setup
 
 ```bash
