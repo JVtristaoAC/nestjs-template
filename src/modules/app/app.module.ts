@@ -2,4 +2,4 @@ import { Global, Module } from '@nestjs/common';
 
 @Global()
 @Module({})
-export class InfraModule {}
+export class AppModule {}

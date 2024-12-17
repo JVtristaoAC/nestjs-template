@@ -14,7 +14,6 @@ export default antfu({
     'linebreak-style': ['error', 'unix'],
     'style/semi': ['error', 'always'],
     'style/brace-style': ['error', '1tbs'],
-    'max-len': ['warn', { code: 80 }],
     'antfu/consistent-list-newline': ['off'],
     'style/member-delimiter-style': [
       'error',
